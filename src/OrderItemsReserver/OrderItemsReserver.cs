@@ -33,7 +33,7 @@ namespace OrderItemsReserver
             req.Body.Position = 0;
             var blobService = new BlobService(config);
             try { 
-                await blobService.Save(req.Body, "order_" + data.BuyerId + "_" + Environment.TickCount);
+                await blobService.Save(req.Body, "order_" + data.BuyerId + "_" + Environment.TickCount + ".json");
                 return new OkObjectResult("Ok");
             }
             catch (Exception e)
