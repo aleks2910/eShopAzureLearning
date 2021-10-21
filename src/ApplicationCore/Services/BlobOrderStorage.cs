@@ -28,7 +28,7 @@ namespace Microsoft.eShopWeb.ApplicationCore.Services
             _log.LogInformation("Calll App Function...");
 
             //todo: move to config
-            string apiUrl = "https://orderitemsreserveraf.azurewebsites.net/api/OrderItemsReserverAF";            
+            string apiUrl = "https://orderitemsreserveraleks.azurewebsites.net/api/OrderItemsReserverAF";            
 
             var data = JsonConvert.SerializeObject(order);
             HttpClient client = new HttpClient();

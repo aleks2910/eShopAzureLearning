@@ -18,21 +18,33 @@ namespace OrderItemsReserver
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");            
+            log.LogInformation("C# HTTP trigger function processed a request.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+            log.LogInformation("Stage 1");
             dynamic data = JsonConvert.DeserializeObject(requestBody);
-            
-            // todo: move to config
-            var config = new Models.AzureStorageConfig() 
-            { 
-                ConnectionString = "DefaultEndpointsProtocol=https;AccountName=modeule5blobsa;AccountKey=X92YOCEYO+pI1gvqlvv7avHOPH4R0oax+8sSM80eDFeleaAy+Vfbn+TpRdmWXAV5eaToNJwUlaY2otxfcFAw6A==;EndpointSuffix=core.windows.net",
-                FileContainerName = "orderscontainer"
-            };
 
+            //return await StoreToBlob(req, data);
+            log.LogInformation("Stage 2");
+            return await StoreToCosmos(data, log);
+
+        }
+
+        private static async Task StoreToCosmos(dynamic data, ILogger log)
+        {
+            var cosmosService = new CosmosStoreService(log);
+
+            await cosmosService.Save(data);
+
+
+        }
+
+        private static async Task<IActionResult> StoreToBlob(HttpRequest req, dynamic data)
+        {
             req.Body.Position = 0;
-            var blobService = new BlobService(config);
-            try { 
+            var blobService = new BlobService(null);
+            try
+            {
                 await blobService.Save(req.Body, "order_" + data.BuyerId + "_" + Environment.TickCount + ".json");
                 return new OkObjectResult("Ok");
             }
@@ -40,10 +52,8 @@ namespace OrderItemsReserver
             {
                 return new OkObjectResult("Error - " + e.Message);
             }
-            
         }
 
-      
 
     }
 }
