@@ -52,10 +52,7 @@ namespace Microsoft.eShopWeb.IntegrationTests
 
             var order = GetOrder();           
 
-            var stream = new MemoryStream();
-            stream.WriteByte(2);
-            stream.WriteByte(1);
-            stream.WriteByte(2);
+            var stream = new MemoryStream();            
             Serialize(order, stream);
 
             stream.Position = 0;
@@ -65,9 +62,16 @@ namespace Microsoft.eShopWeb.IntegrationTests
             }catch (Exception ex ) 
             {
                 throw ex;
-            }
-            
+            }            
         }
+
+        [Fact]
+        public async Task CosmosStoreServiceTest() 
+        {
+            var service = new CosmosStoreService();
+            dynamic dynamicOrder = GetOrder();
+            await service.Save(dynamicOrder);
+        }      
 
         static void Serialize(object value, Stream stream)
         {

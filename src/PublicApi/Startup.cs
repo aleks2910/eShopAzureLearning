@@ -65,10 +65,10 @@ namespace Microsoft.eShopWeb.PublicApi
         public void ConfigureProductionServices(IServiceCollection services)
         {
             // temp
-            ConfigureDevelopmentServices(services);
+            //ConfigureDevelopmentServices(services);
 
 
-            return;
+            //return;
             // use real database
             // Requires LocalDB which can be installed with SQL Server Express 2016
             // https://www.microsoft.com/en-us/download/details.aspx?id=54284
