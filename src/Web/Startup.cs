@@ -83,6 +83,10 @@ namespace Microsoft.eShopWeb.Web
             services.AddDbContext<CatalogContext>(c =>
                 c.UseSqlServer(Configuration.GetConnectionString("CatalogConnection")));
 
+            Console.WriteLine($" connection string - CatalogConnection: {Configuration.GetConnectionString("CatalogConnection")}");
+            Console.WriteLine($" connection string - IdentityConnection: {Configuration.GetConnectionString("IdentityConnection")}");
+
+
             // Add Identity DbContext
             services.AddDbContext<AppIdentityDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));

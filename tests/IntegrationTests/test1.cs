@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
 
@@ -68,7 +68,7 @@ namespace Microsoft.eShopWeb.IntegrationTests
         [Fact]
         public async Task CosmosStoreServiceTest() 
         {
-            var service = new CosmosStoreService();
+            var service = new CosmosStoreService(NullLogger.Instance);
             dynamic dynamicOrder = GetOrder();
             await service.Save(dynamicOrder);
         }      
