@@ -1,11 +1,29 @@
 {
-    "version": "2.0",
-    "logging": {
-        "applicationInsights": {
-            "samplingSettings": {
-                "isEnabled": true,
-                "excludedTypes": "Request"
-            }
-        }
+  "version": "2.0",
+  "extensions": {
+    "serviceBus": {
+      "clientRetryOptions": {
+        "mode": "fixed",
+        "tryTimeout": "00:00:01",
+        "delay": "00:00:00.80",
+        "maxDelay": "00:01:00",
+        "maxRetries": 3
+      },
+      "prefetchCount": 0,
+      "autoCompleteMessages": true,
+      "maxAutoLockRenewalDuration": "00:05:00",
+      "maxConcurrentCalls": 16,
+      "maxConcurrentSessions": 8,
+      "maxMessages": 1000,
+      "sessionIdleTimeout": "00:01:00"
     }
+  },
+  "logging": {
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": true,
+        "excludedTypes": "Request"
+      }
+    }
+  }
 }

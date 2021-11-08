@@ -26,7 +26,7 @@ namespace Microsoft.eShopWeb.IntegrationTests
 
             Order order = GetOrder();
 
-            Assert.True(await storage.SaveOrderToBlob(order));
+            Assert.True(await storage.CallAppFunc(order));
         }
 
         private static Order GetOrder()

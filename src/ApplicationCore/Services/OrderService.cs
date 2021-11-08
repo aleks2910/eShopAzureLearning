@@ -54,7 +54,8 @@ namespace Microsoft.eShopWeb.ApplicationCore.Services
             await _orderRepository.AddAsync(order);
 
             // call Azure Func
-            await _blobStorage.SaveOrderToBlob(order);
+            //await _blobStorage.CallAppFunc(order);
+            await _blobStorage.SendToQueue(order);
         }
     }
 }

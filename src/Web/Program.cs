@@ -64,7 +64,8 @@ namespace Microsoft.eShopWeb.Web
                     // is not available, it will check if Visual Studio and/or the Azure CLI are
                     // installed locally and see if they are configured with credentials that can
                     // access the vault.
-                    config.AddAzureKeyVault(vaultUri);
+                    //
+                    //config.AddAzureKeyVault(vaultUri);
                 });
     }
 }

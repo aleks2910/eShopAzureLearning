@@ -15,8 +15,8 @@ namespace OrderItemsReserver.Services
         private readonly AzureStorageConfig storageConfig;
         private readonly AzureStorageConfig DefaultConfig = new AzureStorageConfig()
         {
-            ConnectionString = "DefaultEndpointsProtocol=https;AccountName=modeule5blobsa;AccountKey=X92YOCEYO+pI1gvqlvv7avHOPH4R0oax+8sSM80eDFeleaAy+Vfbn+TpRdmWXAV5eaToNJwUlaY2otxfcFAw6A==;EndpointSuffix=core.windows.net",
-            FileContainerName = "orderscontainer"
+            ConnectionString = "<hiddewn>",
+            FileContainerName = "orders"
         };
 
         public BlobService(AzureStorageConfig storageConfig)

@@ -8,6 +8,7 @@ namespace Microsoft.eShopWeb.ApplicationCore.Interfaces
 {
     public interface IBlobOrderStorage
     {
-        Task<bool> SaveOrderToBlob(Entities.OrderAggregate.Order order);
+        Task<bool> CallAppFunc(Entities.OrderAggregate.Order order);
+        Task<bool> SendToQueue(Entities.OrderAggregate.Order order);
     }
 }
